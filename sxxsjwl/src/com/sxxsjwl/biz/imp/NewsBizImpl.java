@@ -1,5 +1,7 @@
 package com.sxxsjwl.biz.imp;
 
+import java.util.List;
+
 import com.sxxsjwl.biz.NewsBiz;
 import com.sxxsjwl.dao.NewsDao;
 import com.sxxsjwl.pojo.News;
@@ -28,6 +30,16 @@ public class NewsBizImpl implements NewsBiz {
 			return dao.updateNews(n);
 		}
 		return false;
+	}
+
+	@Override
+	public News findById(int id) {
+		return dao.findById(id);
+	}
+
+	@Override
+	public List<News> findAll() {
+		return dao.getAllNews();
 	}
 
 }

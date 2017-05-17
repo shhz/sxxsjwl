@@ -99,4 +99,24 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 
 	}
 
+	@Override
+	public News findById(int id) {
+		String sql = "select n_id, n_title, n_content, n_author, n_photo_1, n_photo_2, n_photo_3 from news where u_id=?";
+		rst = executeQuery(sql, new String[] { id + "" });
+		try {
+			if (rst.next()) {
+				News news = new News(rst.getInt(1), rst.getString(2), rst.getString(3), rst.getString(4),
+						rst.getString(5), rst.getString(6), rst.getString(7));
+				return news;
+			}
+			DBHelper.release(null, rst, null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DBHelper.release(null, rst, null);
+		System.out.println("≤È—Ø ß∞‹");
+		return null;
+	}
+
 }

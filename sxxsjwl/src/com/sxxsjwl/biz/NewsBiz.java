@@ -1,5 +1,7 @@
 package com.sxxsjwl.biz;
 
+import java.util.List;
+
 import com.sxxsjwl.pojo.News;
 
 public interface NewsBiz {
@@ -26,5 +28,20 @@ public interface NewsBiz {
 	 * @return
 	 */
 	public boolean updata(News n);
+	
+	/**
+	 * 根据 id 查找 News
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public News findById(int id);
+	
+	/**
+	 * 根据 id 查找 News
+	 * 
+	 * @return
+	 */
+	public List<News> findAll();
 
 }

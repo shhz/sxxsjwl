@@ -1,4 +1,4 @@
-package com.sxxsjwl.servlet.user;
+package com.sxxsjwl.servlet.news;
 
 import java.io.IOException;
 
@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sxxsjwl.biz.UserBiz;
-import com.sxxsjwl.pojo.User;
+import com.sxxsjwl.biz.NewsBiz;
+import com.sxxsjwl.pojo.News;
 import com.sxxsjwl.servse.ServseBiz;
 
 /**
  * Servlet implementation class AddServlet
  */
-@WebServlet("/servlet/user/add.do")
+@WebServlet("/servlet/news/add.do")
 public class AddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -46,26 +46,44 @@ public class AddServlet extends HttpServlet {
 		try {
 
 			// 获取 biz
-			UserBiz biz = ServseBiz.getUserBiz();
+			NewsBiz biz = ServseBiz.getNewsBiz();
 
 			// 获取数据
-			String name = (String) request.getAttribute("name");
-			String pwd = (String) request.getAttribute("pwd");
+			String title = (String) request.getAttribute("title");
+			String content = (String) request.getAttribute("content");
+			String author = (String) request.getAttribute("author");
+			String photo_1 = (String) request.getAttribute("photo_1");
+			String photo_2 = (String) request.getAttribute("photo_2");
+			String photo_3 = (String) request.getAttribute("photo_3");
 
 			// 封装对象
-			User u = new User(name, pwd);
+			News n = new News(title, content);
+
+			// 判定是否有作者和图片信息 如果有则存储入对象
+			if (author != null) {
+				n.setN_author(author);
+			}
+			if (photo_1 != null) {
+				n.setN_photo_1(photo_1);
+			}
+			if (photo_2 != null) {
+				n.setN_photo_2(photo_2);
+			}
+			if (photo_3 != null) {
+				n.setN_photo_3(photo_3);
+			}
 
 			// 提交数据库并返还结果
-			boolean a = biz.add(u);
+			boolean a = biz.add(n);
 			if (a) {
 				// 跳转成功页面
-				System.out.println("用户新增成功");
+				System.out.println("公告新增成功");
 			} else {
 				// 跳转失败页面
-				System.out.println("用户新增 失败");
+				System.out.println("公告新增失败");
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			// 其余异常
 			e.printStackTrace();
 		}
 	}

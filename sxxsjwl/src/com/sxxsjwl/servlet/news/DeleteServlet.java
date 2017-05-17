@@ -1,28 +1,30 @@
-package com.sxxsjwl.servlet.user;
+package com.sxxsjwl.servlet.news;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.sxxsjwl.biz.NewsBiz;
 import com.sxxsjwl.biz.UserBiz;
+import com.sxxsjwl.pojo.News;
 import com.sxxsjwl.pojo.User;
 import com.sxxsjwl.servse.ServseBiz;
 
 /**
- * Servlet implementation class AddServlet
+ * Servlet implementation class DeleteServlet
  */
-@WebServlet("/servlet/user/add.do")
-public class AddServlet extends HttpServlet {
+@WebServlet("/servlet/news/delete.do")
+public class DeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AddServlet() {
+	public DeleteServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -43,30 +45,39 @@ public class AddServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		try {
+
+		// 获取 session
+		HttpSession session = request.getSession();
+
+		// 获取登录用户
+		User u = (User) session.getAttribute("user");
+		UserBiz biz1 = ServseBiz.getUserBiz();
+
+		// 判定权限
+		boolean a = biz1.isPower(u);
+		if (a) {
 
 			// 获取 biz
-			UserBiz biz = ServseBiz.getUserBiz();
+			NewsBiz biz = ServseBiz.getNewsBiz();
 
-			// 获取数据
-			String name = (String) request.getAttribute("name");
-			String pwd = (String) request.getAttribute("pwd");
+			// 获取公告的 id
+			int id = (int) request.getAttribute("id");
 
-			// 封装对象
-			User u = new User(name, pwd);
+			// 获取公告的完整数据
+			News n = biz.findById(id);
 
-			// 提交数据库并返还结果
-			boolean a = biz.add(u);
+			// 执行删除并提交数据库
+			a = biz.delete(n);
 			if (a) {
-				// 跳转成功页面
-				System.out.println("用户新增成功");
+				// 删除成功
+				System.out.println("公告删除成功");
 			} else {
-				// 跳转失败页面
-				System.out.println("用户新增 失败");
+				// 删除失败
+				System.out.println("公告删除失败");
 			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} else {
+			// 权限不足
+			System.out.println("无删除权限");
 		}
 	}
 
