@@ -24,13 +24,15 @@ public interface NewsDao {
 	 * 向数据表中新增 News 对象
 	 * 
 	 * @param news
+	 * @return
 	 */
 	public abstract boolean setNews(News news);
 
 	/**
 	 * 向数据表中对应 id 修改 News 对象
 	 * 
-	 * @param user
+	 * @param news
+	 * @return
 	 */
 	public abstract boolean updateNews(News news);
 
@@ -38,6 +40,7 @@ public interface NewsDao {
 	 * 数据表中对应 id 的 News 对象删除
 	 * 
 	 * @param id
+	 * @return
 	 */
 	public abstract boolean deleteById(int id);
 
@@ -45,6 +48,15 @@ public interface NewsDao {
 	 * 根据 id 查找 news
 	 * 
 	 * @param id
+	 * @return
 	 */
 	public abstract News findById(int id);
+
+	/**
+	 * 根据 title 查找 news
+	 * 
+	 * @param title
+	 * @return
+	 */
+	public abstract News findByTitle(String title);
 }

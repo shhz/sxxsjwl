@@ -12,6 +12,11 @@ public class NewsBizImpl implements NewsBiz {
 
 	@Override
 	public boolean add(News n) {
+		if (n.getN_author() != null || n.getN_photo_1() != null || n.getN_photo_2() != null
+				|| n.getN_photo_3() != null) {
+			dao.setNews(n);
+			n = dao.findByTitle(n.getN_title());
+		}
 		return dao.setNews(n);
 	}
 

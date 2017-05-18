@@ -1,6 +1,9 @@
 package com.sxxsjwl.servse;
 
+import com.sxxsjwl.biz.HotBiz;
+import com.sxxsjwl.biz.NewsBiz;
 import com.sxxsjwl.biz.UserBiz;
+import com.sxxsjwl.biz.imp.HotBizImpl;
 import com.sxxsjwl.biz.imp.NewsBizImpl;
 import com.sxxsjwl.biz.imp.UserBizImpl;
 
@@ -12,7 +15,11 @@ public class ServseBiz {
 		return new UserBizImpl();
 	}
 
-	public static NewsBizImpl getNewsBiz() {
+	public static NewsBiz getNewsBiz() {
 		return new NewsBizImpl();
+	}
+
+	public static HotBiz getHotBiz() {
+		return new HotBizImpl();
 	}
 }

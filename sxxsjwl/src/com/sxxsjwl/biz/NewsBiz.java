@@ -28,7 +28,7 @@ public interface NewsBiz {
 	 * @return
 	 */
 	public boolean updata(News n);
-	
+
 	/**
 	 * 根据 id 查找 News
 	 * 
@@ -36,9 +36,9 @@ public interface NewsBiz {
 	 * @return
 	 */
 	public News findById(int id);
-	
+
 	/**
-	 * 根据 id 查找 News
+	 * 查找所有 News
 	 * 
 	 * @return
 	 */
