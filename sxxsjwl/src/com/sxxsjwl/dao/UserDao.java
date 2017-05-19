@@ -1,5 +1,7 @@
 package com.sxxsjwl.dao;
 
+import java.util.List;
+
 import com.sxxsjwl.pojo.User;
 
 public interface UserDao {
@@ -34,7 +36,7 @@ public interface UserDao {
 	 * @return
 	 */
 	public abstract boolean deleteById(int id);
-	
+
 	/**
 	 * 根据 id 获取 User 对象
 	 * 
@@ -43,4 +45,11 @@ public interface UserDao {
 	 */
 	public abstract User getUserById(int id);
 
+	/**
+	 * 获取所有 User 对象
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public abstract List<User> getUsers();
 }

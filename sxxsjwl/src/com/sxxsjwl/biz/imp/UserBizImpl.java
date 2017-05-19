@@ -1,5 +1,7 @@
 package com.sxxsjwl.biz.imp;
 
+import java.util.List;
+
 import com.sxxsjwl.biz.UserBiz;
 import com.sxxsjwl.dao.UserDao;
 import com.sxxsjwl.pojo.User;
@@ -54,6 +56,11 @@ public class UserBizImpl implements UserBiz {
 	@Override
 	public boolean deleteById(int id) {
 		return dao.deleteById(id);
+	}
+
+	@Override
+	public List<User> getUsers() {
+		return dao.getUsers();
 	}
 
 }

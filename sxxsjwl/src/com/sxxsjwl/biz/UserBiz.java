@@ -1,5 +1,7 @@
 package com.sxxsjwl.biz;
 
+import java.util.List;
+
 import com.sxxsjwl.pojo.User;
 
 public interface UserBiz {
@@ -44,11 +46,18 @@ public interface UserBiz {
 	public User findById(int id);
 
 	/**
-	 * 查找用户
+	 * 删除用户
 	 * 
 	 * @param id
 	 * @return
 	 */
 	public boolean deleteById(int id);
 
+	/**
+	 * 显示所有用户
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public List<User> getUsers();
 }

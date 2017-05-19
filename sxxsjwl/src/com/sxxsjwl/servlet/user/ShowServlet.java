@@ -1,26 +1,31 @@
-package com.sxxsjwl.servlet;
+package com.sxxsjwl.servlet.user;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sxxsjwl.biz.UserBiz;
 import com.sxxsjwl.pojo.User;
 import com.sxxsjwl.servse.ServseBiz;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class ShowServlet
  */
-public class LoginServlet extends HttpServlet {
+@WebServlet("/servlet/user/show.do")
+public class ShowServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LoginServlet() {
+	public ShowServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -32,6 +37,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -40,19 +46,15 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String pwd = request.getParameter("pwd");
-		System.out.println("name:" + name + " pwd:" + pwd);
-
 		UserBiz biz = ServseBiz.getUserBiz();
-		User u = new User(name, pwd);
-		u = biz.login(u);
-		System.out.println(u);
-		if (u != null && u.getU_id() != 0) {
-			response.sendRedirect("../index.jsp");
+		List<User> user_list = biz.getUsers();
+		HttpSession ses = request.getSession();
+		if (user_list == null) {
+			ses.setAttribute("user_list", new ArrayList<>());
 		} else {
-			response.sendRedirect("../login.jsp");
+			ses.setAttribute("user_list", user_list);
 		}
+		response.sendRedirect("../../user/list.jsp");
 	}
 
 }

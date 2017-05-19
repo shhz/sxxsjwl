@@ -2,6 +2,8 @@ package com.sxxsjwl.dao.imp;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.sxxsjwl.dao.BaseDao;
 import com.sxxsjwl.dao.UserDao;
@@ -20,7 +22,6 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 				User user = new User(rst.getInt(1), rst.getString(2), rst.getString(3), rst.getInt(4));
 				return user;
 			}
-			DBHelper.release(null, rst, null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -81,9 +82,28 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		try {
 			if (rst.next()) {
 				User user = new User(rst.getInt(1), rst.getString(2), rst.getString(3), rst.getInt(4));
-				DBHelper.release(null, rst, null);
 				return user;
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("≤È—Ø ß∞‹");
+		DBHelper.release(null, rst, null);
+		return null;
+	}
+
+	@Override
+	public List<User> getUsers() {
+		String sql = "SELECT u_id, u_name, u_pwd, u_power FROM user";
+		rst = executeQuery(sql, null);
+		List<User> list = new ArrayList<>();
+		try {
+			while (rst.next()) {
+				User user = new User(rst.getInt(1), rst.getString(2), rst.getString(3), rst.getInt(4));
+				list.add(user);
+			}
+			return list;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -16,13 +16,14 @@ public class NewsBizImpl implements NewsBiz {
 				|| n.getN_photo_3() != null) {
 			dao.setNews(n);
 			n = dao.findByTitle(n.getN_title());
+			return dao.updateNews(n);
 		}
 		return dao.setNews(n);
 	}
 
 	@Override
 	public boolean delete(News n) {
-		if (n != null || n.getN_id() != 0) {
+		if (n != null && n.getN_id() != 0) {
 			return dao.deleteById(n.getN_id());
 		} else {
 			return false;

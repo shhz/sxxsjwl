@@ -24,7 +24,6 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 						rst.getString(5), rst.getString(6), rst.getString(7));
 				return news;
 			}
-			DBHelper.release(null, rst, null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,12 +39,11 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		String sql = "select n_id, n_title, n_content, n_author, n_photo_1, n_photo_2, n_photo_3 FROM news";
 		rst = executeQuery(sql, null);
 		try {
-			if (rst.next()) {
+			while (rst.next()) {
 				News news = new News(rst.getInt(1), rst.getString(2), rst.getString(3), rst.getString(4),
 						rst.getString(5), rst.getString(6), rst.getString(7));
 				newsList.add(news);
 			}
-			DBHelper.release(null, rst, null);
 			return newsList;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -108,7 +106,6 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 						rst.getString(5), rst.getString(6), rst.getString(7));
 				return news;
 			}
-			DBHelper.release(null, rst, null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -128,7 +125,6 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 						rst.getString(5), rst.getString(6), rst.getString(7));
 				return news;
 			}
-			DBHelper.release(null, rst, null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
