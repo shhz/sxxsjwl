@@ -6,7 +6,7 @@ import com.sxxsjwl.pojo.HotAct;
 
 public interface HotBiz {
 	/**
-	 * 新增公告
+	 * 新增活动
 	 * 
 	 * @param h
 	 * @return
@@ -14,7 +14,7 @@ public interface HotBiz {
 	public boolean add(HotAct h);
 
 	/**
-	 * 删除公告
+	 * 删除活动
 	 * 
 	 * @param h
 	 * @return

@@ -52,9 +52,9 @@ public class ShowServlet extends HttpServlet {
 		List<HotAct> list = biz.findAll();
 		HttpSession session = request.getSession();
 		if (!list.isEmpty()) {
-			session.setAttribute("hot_list", list);
+			session.setAttribute("hotact_list", list);
 		} else {
-			session.setAttribute("hot_list", new ArrayList<>());
+			session.setAttribute("hotact_list", new ArrayList<>());
 		}
 		response.sendRedirect("../../hot/list.jsp");
 	}

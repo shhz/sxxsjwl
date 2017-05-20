@@ -17,7 +17,7 @@ public class HotDaoImpl extends BaseDao implements HotDao {
 
 	@Override
 	public HotAct getHot(String title) {
-		String sql = "select h_id, h_title, h_url, h_flag, h_start_date, h_over_data "
+		String sql = "select h_id, h_title, h_url, h_flag, h_photo, h_start_date, h_over_data "
 				+ "FROM hotact WHERE h_title = ?";
 		rst = executeQuery(sql, new String[] { title });
 		try {
@@ -38,10 +38,10 @@ public class HotDaoImpl extends BaseDao implements HotDao {
 	@Override
 	public List<HotAct> getAllHot() {
 		List<HotAct> newsList = new ArrayList<>();
-		String sql = "select h_id, h_title, h_url, h_flag, h_start_date, h_over_data FROM hotact";
+		String sql = "select h_id, h_title, h_url, h_flag, h_photo, h_start_date, h_over_data FROM hotact";
 		rst = executeQuery(sql, null);
 		try {
-			if (rst.next()) {
+			while (rst.next()) {
 				HotAct hot = new HotAct(rst.getInt(1), rst.getString(2), rst.getString(3), rst.getInt(4),
 						rst.getString(5), rst.getDate(6), rst.getDate(7));
 				newsList.add(hot);
@@ -58,9 +58,15 @@ public class HotDaoImpl extends BaseDao implements HotDao {
 
 	@Override
 	public boolean setHot(HotAct h) {
-		String sql = "INSERT INTO hotact (h_title, h_url, h_photo ,h_start_date, h_over_data) VALUES (?, ?, ?)";
-		int row = executeUpdate(sql,
-				new Object[] { h.getH_title(), h.getH_url(), h.getH_photo(), h.getH_start_date(), h.getH_over_date() });
+		String sql = "INSERT INTO hotact (h_title, h_url, h_photo ,h_start_date, h_over_data) VALUES (?, ?, ?, ?, ?)";
+		int row = 0;
+		try {
+			row = executeUpdate(sql, new String[] { h.getH_title(), h.getH_url(), h.getH_photo(),
+					sdf.format(h.getH_start_date()), sdf.format(h.getH_over_date()) });
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if (row > 0) {
 			return true;
 		} else {
@@ -78,8 +84,13 @@ public class HotDaoImpl extends BaseDao implements HotDao {
 		String sql = "update hotact set h_title=?,h_url=?,h_flag=?,h_photo=?,h_start_date=?,h_over_data=? where h_id=?";
 		String start_date = sdf.format(h.getH_start_date());
 		String over_date = sdf.format(h.getH_over_date());
-		int row = executeUpdate(sql, new String[] { h.getH_id() + "", h.getH_title(), h.getH_url(),
-				h.getH_flag() + "" + h.getH_photo(), start_date, over_date });
+		int row = 0;
+		try {
+			row = executeUpdate(sql, new String[] { h.getH_id() + "", h.getH_title(), h.getH_url(),
+					h.getH_flag() + "" + h.getH_photo(), start_date, over_date });
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		if (row > 0) {
 			return true;
 		} else {
@@ -91,7 +102,12 @@ public class HotDaoImpl extends BaseDao implements HotDao {
 	@Override
 	public boolean deleteById(int id) {
 		String sql = "delete from hotact where h_id=?";
-		int row = executeUpdate(sql, new String[] { id + "" });
+		int row = 0;
+		try {
+			row = executeUpdate(sql, new String[] { id + "" });
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		if (row > 0) {
 			return true;
 		} else {
@@ -103,27 +119,8 @@ public class HotDaoImpl extends BaseDao implements HotDao {
 
 	@Override
 	public HotAct findById(int id) {
-		String sql = "select h_title,h_url,h_flag,h_photo,h_start_date,h_over_data from hotact where h_id=?";
+		String sql = "select h_title, h_url, h_flag, h_photo, h_start_date, h_over_data from hotact where h_id=?";
 		rst = executeQuery(sql, new String[] { id + "" });
-		try {
-			if (rst.next()) {
-				HotAct hot = new HotAct(rst.getInt(1), rst.getString(2), rst.getString(3), rst.getInt(4),
-						rst.getString(5), rst.getDate(6), rst.getDate(7));
-				return hot;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		DBHelper.release(null, rst, null);
-		System.out.println("≤È—Ø ß∞‹");
-		return null;
-	}
-
-	@Override
-	public HotAct findByTitle(String title) {
-		String sql = "select h_id,h_title,h_url,h_flag,h_photo,h_start_date,h_over_data from hotact where h_title=?";
-		rst = executeQuery(sql, new String[] { title + "" });
 		try {
 			if (rst.next()) {
 				HotAct hot = new HotAct(rst.getInt(1), rst.getString(2), rst.getString(3), rst.getInt(4),

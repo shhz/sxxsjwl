@@ -52,11 +52,4 @@ public interface HotDao {
 	 */
 	public abstract HotAct findById(int id);
 
-	/**
-	 * ИљОн title Вщев HotAct
-	 * 
-	 * @param title
-	 * @return
-	 */
-	public abstract HotAct findByTitle(String title);
 }

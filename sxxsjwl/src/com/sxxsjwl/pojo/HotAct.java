@@ -1,8 +1,14 @@
 package com.sxxsjwl.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class HotAct {
+public class HotAct implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int h_id;// 索引
 	private String h_title;// 标题
 	private String h_url;// 连接

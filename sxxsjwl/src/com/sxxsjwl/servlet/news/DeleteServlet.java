@@ -70,10 +70,10 @@ public class DeleteServlet extends HttpServlet {
 			a = biz.delete(n);
 			if (a) {
 				// 删除成功
-				System.out.println("公告删除成功");
+				System.out.println("新闻删除成功");
 			} else {
 				// 删除失败
-				System.out.println("公告删除失败");
+				System.out.println("新闻删除失败");
 			}
 		} else {
 			// 权限不足

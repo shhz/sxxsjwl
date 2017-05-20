@@ -6,7 +6,7 @@ import com.sxxsjwl.pojo.News;
 
 public interface NewsBiz {
 	/**
-	 * 新增公告
+	 * 新增新闻
 	 * 
 	 * @param n
 	 * @return
@@ -14,7 +14,7 @@ public interface NewsBiz {
 	public boolean add(News n);
 
 	/**
-	 * 删除公告
+	 * 删除新闻
 	 * 
 	 * @param n
 	 * @return

@@ -51,12 +51,4 @@ public interface NewsDao {
 	 * @return
 	 */
 	public abstract News findById(int id);
-
-	/**
-	 * ИљОн title Вщев news
-	 * 
-	 * @param title
-	 * @return
-	 */
-	public abstract News findByTitle(String title);
 }

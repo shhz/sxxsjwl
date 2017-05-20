@@ -1,9 +1,11 @@
 package com.sxxsjwl.servse;
 
 import com.sxxsjwl.biz.HotBiz;
+import com.sxxsjwl.biz.MessageBiz;
 import com.sxxsjwl.biz.NewsBiz;
 import com.sxxsjwl.biz.UserBiz;
 import com.sxxsjwl.biz.imp.HotBizImpl;
+import com.sxxsjwl.biz.imp.MessageBizImpl;
 import com.sxxsjwl.biz.imp.NewsBizImpl;
 import com.sxxsjwl.biz.imp.UserBizImpl;
 
@@ -21,5 +23,9 @@ public class ServseBiz {
 
 	public static HotBiz getHotBiz() {
 		return new HotBizImpl();
+	}
+
+	public static MessageBiz getMessageBiz() {
+		return new MessageBizImpl();
 	}
 }

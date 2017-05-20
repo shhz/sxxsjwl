@@ -11,7 +11,7 @@ public abstract class BaseDao {
 	private ResultSet rst;
 
 	/**
-	 * Í¨ÓÃÔöÉ¾¸Ä
+	 * é€šç”¨å¢åˆ æ”¹
 	 */
 	public int executeUpdate(String sql, Object[] obs) {
 		conn = DBHelper.getConn();
@@ -38,7 +38,7 @@ public abstract class BaseDao {
 	}
 
 	/**
-	 * Í¨ÓÃ²éÑ¯
+	 * é€šç”¨æŸ¥è¯¢
 	 */
 	public ResultSet executeQuery(String sql, Object[] obs) {
 		conn = DBHelper.getConn();

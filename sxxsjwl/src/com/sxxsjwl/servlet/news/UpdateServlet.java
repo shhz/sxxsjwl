@@ -1,6 +1,9 @@
 package com.sxxsjwl.servlet.news;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -74,6 +77,14 @@ public class UpdateServlet extends HttpServlet {
 				String photo_1 = (String) request.getAttribute("photo_1");
 				String photo_2 = (String) request.getAttribute("photo_2");
 				String photo_3 = (String) request.getAttribute("photo_3");
+				String date = (String) request.getAttribute("date");
+				String url = (String) request.getAttribute("url");
+
+				// 对获取的时间进行处理
+				if (!date.matches(
+						"^((\\d{2}(([02468][048])|([13579][26]))[\\-\\/\\s]?((((0?[13578])|(1[02]))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])))))|(\\d{2}(([02468][1235679])|([13579][01345789]))[\\-\\/\\s]?((((0?[13578])|(1[02]))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|(1[0-9])|(2[0-8]))))))")) {
+					date = null;
+				}
 
 				// 判断数据是否为空 并封装数据
 				if (title != null) {
@@ -94,15 +105,21 @@ public class UpdateServlet extends HttpServlet {
 				if (photo_3 != null) {
 					n.setN_photo_3(photo_3);
 				}
+				if (url != null) {
+					n.setN_url(url);
+				}
+				if (date != null) {
+					n.setN_date(date);
+				}
 
 				// 执行修改并提交数据库
 				a = biz.updata(n);
 				if (a) {
 					// 修改成功
-					System.out.println("公告修改成功");
+					System.out.println("新闻修改成功");
 				} else {
 					// 修改失败
-					System.out.println("公告修改失败");
+					System.out.println("新闻修改失败");
 				}
 			} else {
 				// 权限不足

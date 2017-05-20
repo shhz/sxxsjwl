@@ -1,97 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	id="WebApp_ID" version="3.1">
-
-	<display-name>sxxsjwl</display-name>
-
-	<welcome-file-list>
-		<welcome-file>login.jsp</welcome-file>
-	</welcome-file-list>
-
-	<!-- 登录 -->
-	<servlet>
-		<servlet-name>loginServlet</servlet-name>
-		<servlet-class>com.sxxsjwl.servlet.LoginServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>loginServlet</servlet-name>
-		<url-pattern>/servlet/login.do</url-pattern>
-	</servlet-mapping>
-
-	<!-- 用户 servlet 
-	<servlet>
-		<servlet-name>userAddServlet</servlet-name>
-		<servlet-class>com.sxxsjwl.servlet.user.AddServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>userAddServlet</servlet-name>
-		<url-pattern>/servlet/user/add.do</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>userDeleteServlet</servlet-name>
-		<servlet-class>com.sxxsjwl.servlet.user.DeleteServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>userDeleteServlet</servlet-name>
-		<url-pattern>/servlet/user/delete.do</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>userShowServlet</servlet-name>
-		<servlet-class>com.sxxsjwl.servlet.user.ShowServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>userShowServlet</servlet-name>
-		<url-pattern>/servlet/user/show.do</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>userUpdateServlet</servlet-name>
-		<servlet-class>com.sxxsjwl.servlet.user.UpdateServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>userUpdateServlet</servlet-name>
-		<url-pattern>/servlet/user/update.do</url-pattern>
-	</servlet-mapping>-->
-
-	<!-- 新闻 servlet 
-	<servlet>
-		<servlet-name>newsAddServlet</servlet-name>
-		<servlet-class>com.sxxsjwl.servlet.news.AddServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>newsAddServlet</servlet-name>
-		<url-pattern>/servlet/news/add.do</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>newsDeleteServlet</servlet-name>
-		<servlet-class>com.sxxsjwl.servlet.news.DeleteServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>newsDeleteServlet</servlet-name>
-		<url-pattern>/servlet/news/delete.do</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>newsShowServlet</servlet-name>
-		<servlet-class>com.sxxsjwl.servlet.news.ShowServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>newsShowServlet</servlet-name>
-		<url-pattern>/servlet/news/show.do</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>newsUpdateServlet</servlet-name>
-		<servlet-class>com.sxxsjwl.servlet.news.UpdateServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>newsUpdateServlet</servlet-name>
-		<url-pattern>/servlet/news/update.do</url-pattern>
-	</servlet-mapping>
-	-->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>sxxsjwl</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>loginServlet</servlet-name>
+    <servlet-class>com.sxxsjwl.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>loginServlet</servlet-name>
+    <url-pattern>/servlet/login.do</url-pattern>
+  </servlet-mapping>
+  <jsp-config>
+    <taglib>
+      <taglib-uri>http://java.sun.com/jstl/fmt</taglib-uri>
+      <taglib-location>/WEB-INF/fmt.tld</taglib-location>
+    </taglib>
+    <taglib>
+      <taglib-uri>http://java.sun.com/jstl/fmt-rt</taglib-uri>
+      <taglib-location>/WEB-INF/fmt-rt.tld</taglib-location>
+    </taglib>
+    <taglib>
+      <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
+      <taglib-location>/WEB-INF/c.tld</taglib-location>
+    </taglib>
+    <taglib>
+      <taglib-uri>http://java.sun.com/jstl/core-rt</taglib-uri>
+      <taglib-location>/WEB-INF/c-rt.tld</taglib-location>
+    </taglib>
+    <taglib>
+      <taglib-uri>http://java.sun.com/jstl/sql</taglib-uri>
+      <taglib-location>/WEB-INF/sql.tld</taglib-location>
+    </taglib>
+    <taglib>
+      <taglib-uri>http://java.sun.com/jstl/sql-rt</taglib-uri>
+      <taglib-location>/WEB-INF/sql-rt.tld</taglib-location>
+    </taglib>
+    <taglib>
+      <taglib-uri>http://java.sun.com/jstl/x</taglib-uri>
+      <taglib-location>/WEB-INF/x.tld</taglib-location>
+    </taglib>
+    <taglib>
+      <taglib-uri>http://java.sun.com/jstl/x-rt</taglib-uri>
+      <taglib-location>/WEB-INF/x-rt.tld</taglib-location>
+    </taglib>
+  </jsp-config>
 </web-app>

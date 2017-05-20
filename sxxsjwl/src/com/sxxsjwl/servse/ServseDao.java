@@ -1,9 +1,11 @@
 package com.sxxsjwl.servse;
 
 import com.sxxsjwl.dao.HotDao;
+import com.sxxsjwl.dao.MessageDao;
 import com.sxxsjwl.dao.NewsDao;
 import com.sxxsjwl.dao.UserDao;
 import com.sxxsjwl.dao.imp.HotDaoImpl;
+import com.sxxsjwl.dao.imp.MessageDaoImpl;
 import com.sxxsjwl.dao.imp.NewsDaoImpl;
 import com.sxxsjwl.dao.imp.UserDaoImpl;
 
@@ -21,5 +23,9 @@ public class ServseDao {
 
 	public static HotDao getHotDao() {
 		return new HotDaoImpl();
+	}
+
+	public static MessageDao getMessageDao() {
+		return new MessageDaoImpl();
 	}
 }

@@ -1,6 +1,12 @@
 package com.sxxsjwl.pojo;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int u_id;// 索引
 	private String u_name;// 用户名
 	private String u_pwd;// 密码

@@ -1,6 +1,8 @@
 package com.sxxsjwl.servlet.news;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -55,9 +57,15 @@ public class AddServlet extends HttpServlet {
 			String photo_1 = (String) request.getAttribute("photo_1");
 			String photo_2 = (String) request.getAttribute("photo_2");
 			String photo_3 = (String) request.getAttribute("photo_3");
+			String url = (String) request.getAttribute("url");
+
+			// 时间数据处理
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date d = new Date();
+			String date = sdf.format(d);
 
 			// 封装对象
-			News n = new News(title, content);
+			News n = new News(title, content, date);
 
 			// 判定是否有作者和图片信息 如果有则存储入对象
 			if (author != null) {
@@ -72,15 +80,18 @@ public class AddServlet extends HttpServlet {
 			if (photo_3 != null) {
 				n.setN_photo_3(photo_3);
 			}
+			if (url != null) {
+				n.setN_url(url);
+			}
 
 			// 提交数据库并返还结果
 			boolean a = biz.add(n);
 			if (a) {
 				// 跳转成功页面
-				System.out.println("公告新增成功");
+				System.out.println("新闻新增成功");
 			} else {
 				// 跳转失败页面
-				System.out.println("公告新增失败");
+				System.out.println("新闻新增失败");
 			}
 		} catch (Exception e) {
 			// 其余异常
